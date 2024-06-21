@@ -147,7 +147,7 @@ CREATE INDEX idx_fecha_movimiento ON Movimiento_Tarjeta(Fecha_Movimiento);
 CREATE INDEX idx_usuario_reporte ON Reporte(ID_Usuario);
 
 -- (D)
--- Documentación: Bloque de población de datos
+-- Documentación: Bloque de poblado de base de datos
 
 -- Inserciones en la tabla Usuario
 INSERT INTO Usuario (Nombre, Correo_Electronico, Contraseña, Numero_Identificacion, Telefono)
