@@ -1,71 +1,63 @@
--- Inserción de datos en la tabla Usuario
-INSERT INTO Usuario (Nombre, Correo_Electronico, Contraseña, Numero_Identificacion, Telefono)
-VALUES
-    ('Ana García', 'ana@example.com', 'clave123', 'A12345678', '987-654-3210'),
-    ('Pedro López', 'pedro@example.com', 'segura456', 'B87654321', '123-456-7890'),
-    ('María Torres', 'maria.torres@example.com', 'contraseña789', 'C54321098', '555-555-5555'),
-    ('Carlos Martínez', 'carlos.martinez@example.com', 'secreta987', 'D13579246', '111-222-3333'),
-    ('Laura Rodríguez', 'laura.rodriguez@example.com', 'p@ssw0rd', 'E97531064', '666-777-8888');
-
 -- Inserción de datos en la tabla Gasto
 INSERT INTO Gasto (ID_Usuario, Categoria, Cantidad, Recurrencia, Cantidad_Cuotas, Fecha_Gasto)
 VALUES
-    (1, 'Alimentos', 50.25, 'Mensual', NULL, '2024-06-10'),
-    (2, 'Transporte', 30.00, 'Único', NULL, '2024-06-15'),
-    (3, 'Entretenimiento', 80.50, 'Mensual', NULL, '2024-06-05'),
-    (4, 'Salud', 120.75, 'Único', NULL, '2024-06-20'),
-    (5, 'Educación', 200.00, 'Mensual', NULL, '2024-06-25');
+    (1, 'Ropa', 150000.00, 'Único', NULL, '2024-06-10'),
+    (2, 'Alquiler', 1200000.00, 'Mensual', NULL, '2024-06-15'),
+    (3, 'Salud', 300000.00, 'Único', NULL, '2024-06-05'),
+    (4, 'Transporte', 250000.00, 'Mensual', NULL, '2024-06-20'),
+    (5, 'Entretenimiento', 500000.00, 'Único', NULL, '2024-06-25');
 
 -- Inserción de datos en la tabla Inversión
 INSERT INTO Inversión (ID_Usuario, Tipo_Inversión, Monto, Porcentaje_Mensual, Fecha_Inversión)
 VALUES
-    (1, 'Acciones', 1000.00, 1.5, '2024-06-01'),
-    (2, 'Fondos de inversión', 5000.00, 0.75, '2024-06-05'),
-    (3, 'Plazo fijo', 3000.00, 0.5, '2024-06-10'),
-    (4, 'Bienes raíces', 15000.00, 2.0, '2024-06-15'),
-    (5, 'Criptomonedas', 800.00, 3.0, '2024-06-20');
+    (1, 'Cuenta de ahorros', 5000000.00, 0.3, '2024-06-01'),
+    (2, 'Acciones', 8000000.00, 1.2, '2024-06-05'),
+    (3, 'Fondos de inversión', 4000000.00, 0.8, '2024-06-10'),
+    (4, 'Criptomonedas', 10000000.00, 2.5, '2024-06-15'),
+    (5, 'Plazo fijo', 6000000.00, 0.5, '2024-06-20');
 
 -- Inserción de datos en la tabla Meta_Ahorro
 INSERT INTO Meta_Ahorro (ID_Usuario, Monto_Ahorro, Cuotas, Plazo, Categoria, Fecha_Meta)
 VALUES
-    (1, 500.00, 12, 1, 'Vacaciones', '2024-07-01'),
-    (2, 1000.00, 6, 2, 'Educación', '2024-08-01'),
-    (3, 800.00, 10, 3, 'Adquisición de bienes', '2024-09-01'),
-    (4, 1200.00, 8, 4, 'Emergencias', '2024-10-01'),
-    (5, 1500.00, 12, 1, 'Renovación del hogar', '2024-11-01');
+    (1, 1000000.00, 6, 1, 'Compra de vehículo', '2024-07-01'),
+    (2, 1500000.00, 12, 2, 'Vacaciones', '2024-08-01'),
+    (3, 2000000.00, 8, 3, 'Mejoras en la vivienda', '2024-09-01'),
+    (4, 1800000.00, 10, 4, 'Educación', '2024-10-01'),
+    (5, 1200000.00, 12, 1, 'Inicio de negocio', '2024-11-01');
 
 -- Inserción de datos en la tabla Categoría
 INSERT INTO Categoría (ID_Usuario, Nombre_Categoría, Tipo)
 VALUES
-    (1, 'Salud', 'Pasivo'),
-    (2, 'Educación', 'Pasivo'),
-    (3, 'Vivienda', 'Pasivo'),
-    (4, 'Entretenimiento', 'Pasivo'),
-    (5, 'Transporte', 'Pasivo');
+    (1, 'Impuestos', 'Pasivo'),
+    (2, 'Seguros', 'Pasivo'),
+    (3, 'Donaciones', 'Pasivo'),
+    (4, 'Viajes', 'Pasivo'),
+    (5, 'Regalos', 'Pasivo');
 
 -- Inserción de datos en la tabla Tarjeta_Crédito
 INSERT INTO Tarjeta_Crédito (ID_Usuario, Numero_Tarjeta, Fecha_Expiracion, CVV, Cupo_Disponible)
 VALUES
-    (1, '1234567812345678', '2025-12-31', '123', 2000.00),
-    (2, '9876543298765432', '2026-06-30', '456', 3000.00),
-    (3, '1111222233334444', '2027-03-31', '789', 4000.00),
-    (4, '5555666677778888', '2028-01-31', '012', 5000.00),
-    (5, '9999888877776666', '2029-12-31', '345', 6000.00);
+    (1, '1111222233334444', '2025-12-31', '567', 4000000.00),
+    (2, '8888999977776666', '2026-06-30', '890', 5000000.00),
+    (3, '4444555566667777', '2027-03-31', '123', 6000000.00),
+    (4, '2222333344445555', '2028-01-31', '456', 7000000.00),
+    (5, '9999888877776666', '2029-12-31', '789', 8000000.00);
 
 -- Inserción de datos en la tabla Movimiento_Tarjeta
 INSERT INTO Movimiento_Tarjeta (ID_Tarjeta, Monto, Intereses, Cantidad_Cuotas, Fecha_Movimiento)
 VALUES
-    (1, 150.75, 5.00, 1, '2024-06-20'),
-    (2, 300.00, 10.00, 1, '2024-06-25'),
-    (3, 200.50, 7.50, 1, '2024-06-15'),
-    (4, 500.25, 12.00, 1, '2024-06-30'),
-    (5, 100.00, 3.50, 1, '2024-06-10');
+    (1, 800000.00, 20000.00, 1, '2024-06-20'),
+    (2, 1500000.00, 50000.00, 1, '2024-06-25'),
+    (3, 600000.00, 15000.00, 1, '2024-06-15'),
+    (4, 1200000.00, 30000.00, 1, '2024-06-30'),
+    (5, 400000.00, 10000.00, 1, '2024-06-10');
 
 -- Inserción de datos en la tabla Reporte
 INSERT INTO Reporte (ID_Usuario, Tipo_Reporte, Fecha_Reporte, Detalle)
 VALUES
-    (1, 'Gastos', '2024-06-01', 'Informe mensual de gastos'),
-    (2, 'Ingresos', '2024-06-01', 'Informe mensual de ingresos'),
-    (3, 'Inversiones', '2024-06-01', 'Informe de rendimiento de inversiones'),
-    (4, 'Gastos', '2024-06-01', 'Informe de gastos personales'),
-    (5, 'Ingresos', '2024-06-01', 'Informe de ingresos familiares');
+    (1, 'Gastos', '2024-06-01', 'Informe de gastos tributarios'),
+    (2, 'Ingresos', '2024-06-01', 'Informe mensual de pólizas de seguro'),
+    (3, 'Inversiones', '2024-06-01', 'Informe de donaciones realizadas'),
+    (4, 'Gastos', '2024-06-01', 'Informe de viajes realizados'),
+    (5, 'Ingresos', '2024-06-01', 'Informe de ingresos por regalos');
+
