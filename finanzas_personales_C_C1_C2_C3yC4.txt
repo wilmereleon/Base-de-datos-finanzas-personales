@@ -223,8 +223,14 @@ VALUES
 
 -- Consultas simples
 SHOW TABLES;
+SELECT * FROM categoría;
+SELECT * FROM gasto;
+SELECT * FROM inversión;
+SELECT * FROM meta_ahorro;
+SELECT * FROM movimiento_tarjeta;
+SELECT * FROM reporte;
+SELECT * FROM tarjeta_crédito;
+SELECT * FROM usuario;
+
 -- Fin del script
 
--- Ver las tablas en la base de datos
-SHOW TABLES;
--- Fin del script
