@@ -1,8 +1,8 @@
 -- Crear la base de datos
-CREATE DATABASE prove_25;
+CREATE DATABASE finanzas_personales_C;
 
 -- Usar la base de datos
-USE prove_25;
+USE finanzas_personales_C;
 
 -- (C1)
 -- Documentación: Bloque de creación de tablas y atributos
