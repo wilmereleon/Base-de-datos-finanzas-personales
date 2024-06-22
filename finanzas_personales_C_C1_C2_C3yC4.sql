@@ -1,8 +1,8 @@
 -- Crear la base de datos
-CREATE DATABASE finanzas_personales_C;
+CREATE DATABASE prove_25;
 
 -- Usar la base de datos
-USE finanzas_personales_C;
+USE prove_25;
 
 -- (C1)
 -- Documentación: Bloque de creación de tablas y atributos
@@ -152,37 +152,31 @@ CREATE INDEX idx_usuario_reporte ON Reporte(ID_Usuario);
 -- Inserciones en la tabla Usuario
 INSERT INTO Usuario (Nombre, Correo_Electronico, Contraseña, Numero_Identificacion, Telefono)
 VALUES
-    ('Juan Pérez', 'juan@example.com', 'secreto123', '1234567890', '555-123-4567'),
-    ('María Rodríguez', 'maria@example.com', 'clave456', '9876543210', '555-987-6543'),
-    ('Carlos López', 'carlos@example.com', 'contraseña789', '5432109876', '555-543-2109')
-    -- Agrega más usuarios aquí
-    ;
-
--- Inserciones en la tabla Gasto
-INSERT INTO Gasto (Monto, Fecha_Gasto, Descripción, ID_Categoría, ID_Usuario)
-VALUES
-    (100.50, '2024-06-20', 'Comida', 1, 1),
-    (50.75, '2024-06-21', 'Transporte', 2, 2),
-    (75.00, '2024-06-22', 'Entretenimiento', 3, 3)
-    -- Agrega más gastos aquí
+    ('Juan A. Pérez', 'juanA@example.com', 'secretos123', '20145852', '3214785512'),
+    ('María Rodríguez', 'maria@example.com', 'clave456', '1022714559', '3147318590'),
+    ('Carlos María López', 'carlosM@example.com', 'contrasenna789', '1021416652', '3118452201'),
+    ('Sebastián Téllez', 'sebaste@example.com', 'contrasenna985', '1025895410', '3154857401'),
+    ('David González', 'judazalez@example.com', 'admin1234', '1024581436', '3054108736')
     ;
 
 -- Inserciones en la tabla Inversión
 INSERT INTO Inversión (Monto, Porcentaje_Mensual, Fecha_Inversión, ID_Usuario)
 VALUES
-    (5000.00, 0.02, '2024-06-15', 1),
-    (3000.00, 0.01, '2024-06-18', 2),
-    (2000.00, 0.015, '2024-06-20', 3)
-    -- Agrega más inversiones aquí
+    (500000.00, 0.20, '2024-06-15', 1),
+    (300000.00, 0.10, '2024-06-18', 2),
+    (200000.00, 0.15, '2024-06-20', 3),
+    (600000.00, 0.40, '2024-06-20', 4),
+    (120000.00, 0.25, '2024-06-22', 5)
     ;
 
 -- Inserciones en la tabla Meta_Ahorro
 INSERT INTO Meta_Ahorro (Monto, Fecha_Meta, Descripción, ID_Usuario)
 VALUES
-    (2000.00, '2024-06-30', 'Vacaciones', 1),
-    (1500.00, '2024-07-15', 'Electrodomésticos', 2),
-    (1000.00, '2024-06-25', 'Emergencia', 3)
-    -- Agrega más metas de ahorro aquí
+    (200000.00, '2024-06-30', 'Vacaciones', 1),
+    (150000.00, '2024-07-15', 'Electrodomésticos', 2),
+    (1000000.00, '2024-06-25', 'Mejoras en la vivienda', 3),
+    (100000.00, '2024-06-30', 'Emergencia', 4),
+    (550000.00, '2024-06-15', 'Inicio de negocio', 5)
     ;
 
 -- Inserciones en la tabla Categoría
@@ -190,26 +184,29 @@ INSERT INTO Categoría (Nombre, Descripción, ID_Usuario)
 VALUES
     ('Alimentación', 'Gastos relacionados con comida', 1),
     ('Transporte', 'Gastos de transporte público o gasolina', 2),
-    ('Entretenimiento', 'Cine, conciertos, etc.', 3)
-    -- Agrega más categorías aquí
+    ('Entretenimiento', 'Cine, conciertos, etc.', 3),
+    ('Impuestos', 'Renta, Predial, Movilidad', 4),
+    ('Donaciones', 'Poli, IDRD, CRAC', 5)
     ;
 
 -- Inserciones en la tabla Tarjeta_Crédito
 INSERT INTO Tarjeta_Crédito (Numero_Tarjeta, Fecha_Expiración, CVV, ID_Usuario)
 VALUES
-    ('1234567890123456', '2025-12-31', '123', 1),
-    ('9876543210987654', '2026-06-30', '456', 2),
-    ('1111222233334444', '2025-09-30', '789', 3)
-    -- Agrega más tarjetas de crédito aquí
+    ('4025654178451024', '2025-12-31', '123', 1),
+    ('4215741585691025', '2026-06-30', '456', 2),
+    ('4178851299601026', '2025-09-30', '789', 3),
+    ('4023418975121027', '2025-09-30', '801', 4),
+    ('4458187456921028', '2025-09-30', '122', 5)
     ;
 
 -- Inserciones en la tabla Movimiento_Tarjeta
 INSERT INTO Movimiento_Tarjeta (Monto, Fecha_Movimiento, Descripción, ID_Tarjeta)
 VALUES
-    (150.00, '2024-06-22', 'Compra en línea', 1),
-    (75.50, '2024-06-23', 'Restaurante', 2),
-    (50.25, '2024-06-24', 'Tienda de ropa', 3)
-    -- Agrega más movimientos de tarjeta aquí
+    (150000.00, '2024-06-22', 'Compra en línea', 1),
+    (75500.00, '2024-06-23', 'Restaurante', 2),
+    (800000.00, '2024-06-24', 'Tienda de ropa Koaj', 3),
+    (500000.00, '2024-06-25', 'Tienda de ropa Koaj', 4),
+    (514000.00, '2024-06-27', 'Tienda de ropa Arena', 5)
     ;
 
 -- Inserciones en la tabla Reporte
@@ -217,20 +214,36 @@ INSERT INTO Reporte (Fecha_Reporte, Descripción, ID_Usuario)
 VALUES
     ('2024-06-30', 'Resumen mensual de gastos', 1),
     ('2024-06-30', 'Informe de inversiones', 2),
-    ('2024-06-30', 'Estado de metas de ahorro', 3)
-    -- Agrega más reportes aquí
+    ('2024-06-30', 'Estado de metas de ahorro', 3),
+    ('2024-06-30', 'Estado de metas de ahorro', 4),
+    ('2024-06-30', 'Informe de inversiones', 5)
+    ;
+    
+    -- Inserciones en la tabla Gasto
+INSERT INTO Gasto (Monto, Fecha_Gasto, Descripción, ID_Categoría, ID_Usuario)
+VALUES
+    (185000.00, '2024-06-20', 'Comida', 1, 1),
+    (985630.00, '2024-06-21', 'Transporte', 2, 2),
+    (789000.00, '2024-06-22', 'Entretenimiento', 3, 3),
+    (150000.00, '2024-06-23', 'Ropa', 4, 4),
+    (1200000.00, '2024-06-24', 'Arriendo', 5, 5)
     ;
 
 -- Consultas simples
 SHOW TABLES;
+
 SELECT * FROM categoría;
+
 SELECT * FROM gasto;
+
 SELECT * FROM inversión;
+
 SELECT * FROM meta_ahorro;
+
 SELECT * FROM movimiento_tarjeta;
+
 SELECT * FROM reporte;
+
 SELECT * FROM tarjeta_crédito;
+
 SELECT * FROM usuario;
-
--- Fin del script
-
