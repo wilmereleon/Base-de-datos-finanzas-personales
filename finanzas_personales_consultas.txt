@@ -1,12 +1,16 @@
 -- Consultas a la base de datos
 
-/* 1. Consulta con INNER JOIN para obtener los detalles de los gastos de cada usuario:*/
+/* 1. Consulta con INNER JOIN para obtener los detalles de los gastos de cada usuario:
+   Esta consulta proporciona información detallada sobre los gastos de cada usuario, incluyendo el monto,
+   la fecha del gasto, su descripción y la categoría a la que pertenece el gasto. */																								  																			  
 SELECT u.Nombre AS Nombre_Usuario, g.Monto, g.Fecha_Gasto, g.Descripción, c.Nombre AS Nombre_Categoría
 FROM Usuario u
 INNER JOIN Gasto g ON u.ID_Usuario = g.ID_Usuario
 INNER JOIN Categoría c ON g.ID_Categoría = c.ID_Categoría;
 
-/* 2. consulta con LEFT JOIN para ver todos los usuarios y sus inversiones*/
+/* 2. Consulta con LEFT JOIN para ver todos los usuarios y sus inversiones:
+   Muestra todos los usuarios y, si tienen, sus inversiones asociadas, incluyendo el monto de la inversión,
+   la fecha y el porcentaje mensual de retorno. */	  
 SELECT 
     u.Nombre,
     i.Monto,
@@ -17,7 +21,9 @@ FROM
 LEFT JOIN 
     Inversión i ON u.ID_Usuario = i.ID_Usuario;
 
-/* 3. consulta con RIGHT JOIN para traer las tarjetas de crédito y sus usuarios*/
+/* 3. Consulta con RIGHT JOIN para traer las tarjetas de crédito y sus usuarios:
+   Lista todas las tarjetas de crédito disponibles y, si están asignadas, muestra el nombre del usuario
+   asociado a cada tarjeta. */			  
 SELECT 
     tc.Numero_Tarjeta,
     tc.Fecha_Expiración,
@@ -26,8 +32,9 @@ FROM
     Tarjeta_Crédito tc
 RIGHT JOIN 
     Usuario u ON u.ID_Usuario = tc.ID_Usuario;
-	
-/* 4. consulta para obtener el gasto total por cada usuario con INNER JOIN y SUM*/
+    
+/* 4. Consulta para obtener el gasto total por cada usuario con INNER JOIN y SUM:
+   Calcula el total de gastos realizados por cada usuario, sumando todos sus gastos. */   
 SELECT 
     u.Nombre,
     SUM(g.Monto) AS Total_Gasto
@@ -38,7 +45,8 @@ INNER JOIN
 GROUP BY 
     u.Nombre;
 
-/* 5. consulta para obtener el gasto minimo y maximo de cada categoria utilizando LEFT JOIN*/
+/* 5. Consulta para obtener el gasto mínimo y máximo de cada categoría utilizando LEFT JOIN:
+   Determina el gasto mínimo y máximo registrado en cada categoría de gastos. */															   
 SELECT 
     c.Nombre,
     MIN(g.Monto) AS Gasto_Mínimo,
@@ -50,7 +58,8 @@ LEFT JOIN
 GROUP BY 
     c.Nombre;
 	
-/* 6. consulta con INNER JOIN para ver la cantidad promedio de los movimientos de tarjeta por usuario*/
+/* 6. Consulta con INNER JOIN para ver la cantidad promedio de los movimientos de tarjeta por usuario:
+   Calcula el promedio del monto de los movimientos realizados con las tarjetas de crédito por cada usuario. */																											
 SELECT 
     u.Nombre,
     AVG(mt.Monto) AS Promedio_Movimientos
@@ -63,7 +72,8 @@ INNER JOIN
 GROUP BY 
     u.Nombre;
 
-/* 7. consulta con LEFT JOIN para obtener el total de inversiones por usuario*/
+/* 7. Consulta con LEFT JOIN para obtener el total de inversiones por usuario:
+   Suma el total de las inversiones realizadas por cada usuario, tratando los valores nulos como 0. */																							  
 SELECT 
     u.Nombre,
     COALESCE(SUM(i.Monto), 0) AS Total_Inversiones
@@ -74,7 +84,8 @@ LEFT JOIN
 GROUP BY 
     u.Nombre;
 
-/* 8. consulta con RIGHT JOIN para obtener todas las metas de ahorro y sus usuarios*/
+/* 8. Consulta con RIGHT JOIN para obtener todas las metas de ahorro y sus usuarios:
+   Muestra todas las metas de ahorro establecidas y, si están asignadas, el nombre del usuario asociado a cada meta. */																												
 SELECT 
     ma.Descripción,
     ma.Monto,
@@ -84,7 +95,8 @@ FROM
 RIGHT JOIN 
     Usuario u ON u.ID_Usuario = ma.ID_Usuario;
 
-/* 9. consulta con INNER JOIN para obtener el gasto total por cada categoria*/
+/* 9. Consulta con INNER JOIN para obtener el gasto total por cada categoría:
+   Suma el total de los gastos realizados en cada categoría, proporcionando una visión del gasto total por categoría. */																												   
 SELECT 
     c.Nombre,
     SUM(g.Monto) AS Total_Gasto_Categoría
@@ -95,7 +107,8 @@ INNER JOIN
 GROUP BY 
     c.Nombre;
 	
-/* 10. consulta con LEFT JOIN para obtener el maximo y minimo monto de inversion por usuario*/
+/* 10. Consulta con LEFT JOIN para obtener el máximo y mínimo monto de inversión por usuario:
+   Encuentra la inversión máxima y mínima realizada por cada usuario, permitiendo identificar los rangos de inversión. */																											 
 SELECT 
     u.Nombre,
     MAX(i.Monto) AS Máxima_Inversión,
@@ -106,6 +119,9 @@ LEFT JOIN
     Inversión i ON u.ID_Usuario = i.ID_Usuario
 GROUP BY 
     u.Nombre;
+
+
+
 
 
 
