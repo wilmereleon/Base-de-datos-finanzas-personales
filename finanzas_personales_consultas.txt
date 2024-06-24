@@ -120,14 +120,4 @@ LEFT JOIN
 GROUP BY 
     u.Nombre;
 
-
-
-
-
-
-
-
-
-
-
-
+-- Fin del script
