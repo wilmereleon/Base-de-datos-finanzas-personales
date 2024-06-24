@@ -1,4 +1,4 @@
---Consultas a la base de datos
+-- Consultas a la base de datos
 
 /* 1. Consulta con INNER JOIN para obtener los detalles de los gastos de cada usuario:*/
 SELECT u.Nombre AS Nombre_Usuario, g.Monto, g.Fecha_Gasto, g.Descripción, c.Nombre AS Nombre_Categoría
