@@ -1,19 +1,19 @@
+-- Bloque 1: Creación de la Base de Datos
+-- Este bloque inicia con la creación de la base de datos finanzas_personales_C y selecciona esta base de datos para operaciones futuras.
+
 -- Crear la base de datos
 CREATE DATABASE finanzas_personales_C;
 
 -- Usar la base de datos
 USE finanzas_personales_C;
 
--- (C1)
--- Documentación: Bloque de creación de tablas y atributos
-
-
--- (C2)
--- Nota: Este bloque no incluye definición de llaves primarias, llaves foráneas ni condiciones de nulidad, por lo tanto, se agreganlas columnas
--- con las llaves primarias y foráneas con instrucciones ALTER TABLE para garantizar que el código de la creación genere las relaciones correctas
--- entre cada una de las tablas.
+-- Bloque 2: Creación de Tablas
+-- En este bloque, se crean las tablas necesarias para almacenar la información de los usuarios, sus gastos, inversiones, metas de ahorro,
+-- categorías de gastos, tarjetas de crédito, movimientos de tarjeta y reportes. Cada tabla se define con sus respectivos campos, inicialmente
+-- sin llaves primarias, llaves foráneas ni restricciones de nulidad.
 
 -- Crear la tabla Usuario
+-- Almacena información básica de los usuarios del sistema.
 CREATE TABLE Usuario (
     Nombre VARCHAR(100),
     Correo_Electronico VARCHAR(100),
@@ -25,6 +25,7 @@ CREATE TABLE Usuario (
 );
 
 -- Crear la tabla Gasto
+-- Registra los gastos realizados por los usuarios, relacionándolos con una categoría específica.
 CREATE TABLE Gasto (
     Monto DECIMAL(10,2),
     Fecha_Gasto DATE,
@@ -33,6 +34,7 @@ CREATE TABLE Gasto (
 );
 
 -- Crear la tabla Inversión
+-- Guarda información sobre las inversiones realizadas por los usuarios.
 CREATE TABLE Inversión (
     Monto DECIMAL(10, 2),
     Porcentaje_Mensual DECIMAL(5, 2),
@@ -40,6 +42,7 @@ CREATE TABLE Inversión (
 );
 
 -- Crear la tabla Meta_Ahorro
+-- Permite a los usuarios establecer metas de ahorro.
 CREATE TABLE Meta_Ahorro (
     Monto DECIMAL(10,2),
     Fecha_Meta DATE,
@@ -47,12 +50,14 @@ CREATE TABLE Meta_Ahorro (
 );
 
 -- Crear la tabla Categoría
+-- Define las categorías disponibles para clasificar los gastos.
 CREATE TABLE Categoría (
     Nombre VARCHAR(50),
     Descripción VARCHAR(255)
 );
 
 -- Crear la tabla Tarjeta_Crédito
+-- Almacena información sobre las tarjetas de crédito de los usuarios.
 CREATE TABLE Tarjeta_Crédito (
     Numero_Tarjeta VARCHAR(20),
     Fecha_Expiración DATE,
@@ -60,6 +65,7 @@ CREATE TABLE Tarjeta_Crédito (
 );
 
 -- Crear la tabla Movimiento_Tarjeta
+-- Registra los movimientos realizados con las tarjetas de crédito.
 CREATE TABLE Movimiento_Tarjeta (
     Monto DECIMAL(10,2),
     Fecha_Movimiento DATE,
@@ -67,15 +73,19 @@ CREATE TABLE Movimiento_Tarjeta (
 );
 
 -- Crear la tabla Reporte
+-- Permite generar reportes sobre las finanzas de los usuarios.
 CREATE TABLE Reporte (
     Fecha_Reporte DATE,
     Descripción VARCHAR(255)
 );
 
--- (C3)
--- Documentación: Bloque de modificación de tablas
--- Nota: Este bloque incluye la definición de llaves primarias, llaves foráneas y condiciones de nulidad (se modifican dos atributos de cada tabla conm la instrucción MODIFY
--- en la tabla usuario, se crean las columnas con su llave primaria para poder efectuar las relaciones y se crean las llaves foráneas).
+-- Bloque 3: Modificación de Tablas
+-- Este bloque modifica las tablas creadas anteriormente para agregar llaves primarias y foráneas, y para establecer restricciones de nulidad y unicidad donde sea necesario.
+
+-- Se agrega una columna ID_Usuario como llave primaria autoincremental a la tabla Usuario.
+-- Se modifican las columnas Correo_Electronico y Numero_Identificacion para que sean únicas y no nulas.
+-- Se sigue un proceso similar para agregar llaves primarias y foráneas a las demás tablas, estableciendo relaciones entre ellas, como la relación entre Gasto y Usuario,
+-- Inversión y Usuario, entre otras.
 ALTER TABLE Usuario ADD ID_Usuario INT AUTO_INCREMENT PRIMARY KEY;
 ALTER TABLE Usuario MODIFY Correo_Electronico VARCHAR(100) NOT NULL UNIQUE;
 ALTER TABLE Usuario MODIFY Numero_Identificacion VARCHAR(50) NOT NULL UNIQUE;
@@ -150,6 +160,7 @@ CREATE INDEX idx_usuario_reporte ON Reporte(ID_Usuario);
 -- Documentación: Bloque de poblado de base de datos
 
 -- Inserciones en la tabla Usuario
+-- Inserta datos de usuarios, incluyendo nombre, correo electrónico, contraseña, número de identificación y teléfono.
 INSERT INTO Usuario (Nombre, Correo_Electronico, Contraseña, Numero_Identificacion, Telefono)
 VALUES
     ('Juan A. Pérez', 'juanA@example.com', 'secretos123', '20145852', '3214785512'),
@@ -160,6 +171,7 @@ VALUES
     ;
 
 -- Inserciones en la tabla Inversión
+-- Inserta datos de inversiones, incluyendo el monto, porcentaje mensual, fecha de inversión y el ID del usuario relacionado.
 INSERT INTO Inversión (Monto, Porcentaje_Mensual, Fecha_Inversión, ID_Usuario)
 VALUES
     (500000.00, 0.20, '2024-06-15', 1),
@@ -170,6 +182,7 @@ VALUES
     ;
 
 -- Inserciones en la tabla Meta_Ahorro
+-- Inserta metas de ahorro, incluyendo el monto objetivo, fecha de la meta, descripción y el ID del usuario asociado.
 INSERT INTO Meta_Ahorro (Monto, Fecha_Meta, Descripción, ID_Usuario)
 VALUES
     (200000.00, '2024-06-30', 'Vacaciones', 1),
@@ -180,6 +193,7 @@ VALUES
     ;
 
 -- Inserciones en la tabla Categoría
+-- Inserta categorías de gastos, incluyendo el nombre, descripción y el ID del usuario que creó la categoría.
 INSERT INTO Categoría (Nombre, Descripción, ID_Usuario)
 VALUES
     ('Alimentación', 'Gastos relacionados con comida', 1),
@@ -190,6 +204,7 @@ VALUES
     ;
 
 -- Inserciones en la tabla Tarjeta_Crédito
+-- Inserta datos de tarjetas de crédito, incluyendo el número de tarjeta, fecha de expiración, CVV y el ID del usuario titular.
 INSERT INTO Tarjeta_Crédito (Numero_Tarjeta, Fecha_Expiración, CVV, ID_Usuario)
 VALUES
     ('4025654178451024', '2025-12-31', '123', 1),
@@ -200,6 +215,7 @@ VALUES
     ;
 
 -- Inserciones en la tabla Movimiento_Tarjeta
+-- Inserta movimientos de tarjeta, incluyendo el monto, fecha del movimiento, descripción y el ID de la tarjeta asociada.
 INSERT INTO Movimiento_Tarjeta (Monto, Fecha_Movimiento, Descripción, ID_Tarjeta)
 VALUES
     (150000.00, '2024-06-22', 'Compra en línea', 1),
@@ -210,6 +226,7 @@ VALUES
     ;
 
 -- Inserciones en la tabla Reporte
+-- Inserta reportes, incluyendo la fecha del reporte, descripción y el ID del usuario asociado.
 INSERT INTO Reporte (Fecha_Reporte, Descripción, ID_Usuario)
 VALUES
     ('2024-06-30', 'Resumen mensual de gastos', 1),
@@ -220,6 +237,7 @@ VALUES
     ;
     
     -- Inserciones en la tabla Gasto
+-- Inserta gastos, incluyendo el monto, fecha del gasto, descripción, ID de la categoría y ID del usuario que realizó el gasto.
 INSERT INTO Gasto (Monto, Fecha_Gasto, Descripción, ID_Categoría, ID_Usuario)
 VALUES
     (185000.00, '2024-06-20', 'Comida', 1, 1),
